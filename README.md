@@ -1,21 +1,39 @@
-## Evidence
+# WordPress REST API Security Assessment
 
-### 1. WordPress 7.0.0
+Security assessment of the WordPress REST API Batch Requests feature, including vulnerability reproduction, version comparison, patch validation, and post-patch retesting in a controlled lab environment.
 
-![WordPress 7.0.0](wordpress-cve-2026-63030-evidence/01-wordpress-7.0.0.png)
+## Overview
 
-### 2. Batch Request Handler
+This project documents a controlled security assessment of the WordPress REST API Batch Requests functionality.
 
-![Batch Request Handler](wordpress-cve-2026-63030-evidence/02-batch-request-handler.png)
+The assessment focused on understanding the behavior of the Batch API, reproducing the issue in a controlled environment, applying the vendor patch by upgrading WordPress, and performing a post-patch retest.
 
-### 3. Batch API Test
+## Environment
 
-![Batch API Test](wordpress-cve-2026-63030-evidence/03-batch-api-test.png)
+- **Application:** WordPress
+- **Initial Version:** 7.0.0
+- **Patched Version:** 7.0.2
+- **Environment:** Docker
+- **PHP:** 8.3
+- **Component:** WordPress REST API
+- **Feature:** Batch Requests
+- **Endpoint:** `/batch/v1`
 
-### 4. Patch to WordPress 7.0.2
+## Assessment Flow
 
-![Patch to WordPress 7.0.2](wordpress-cve-2026-63030-evidence/04-patch-to-7.0.2.png)
+The assessment was performed using the following workflow:
 
-### 5. Post-Patch Retest
+1. Deploy WordPress 7.0.0 in a controlled lab environment.
+2. Identify the REST API Batch Requests implementation.
+3. Review the relevant server-side request handling logic.
+4. Reproduce the observed behavior through the Batch API endpoint.
+5. Upgrade WordPress from 7.0.0 to 7.0.2.
+6. Repeat the same test after the patch.
+7. Compare the behavior before and after the update.
 
-![Post-Patch Retest](wordpress-cve-2026-63030-evidence/05-wordpress-7.0.2-retest.png)
+## Technical Area
+
+The relevant implementation is located in:
+
+```text
+wp-includes/rest-api/class-wp-rest-server.php
